@@ -74,6 +74,15 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name']
 
+    STAGE_CHOICES = [
+        ('questionnaire', 'Анкета'),
+        ('testing', 'Тестирование'),
+        ('career_school', 'Карьерная школа'),
+        ('internship', 'Стажировка')
+    ]
+    current_stage = models.CharField(max_length=128, choices=STAGE_CHOICES, default='questionnaire',
+                                     verbose_name='Текущий этап')
+
     def get_full_name(self):
         return self.name
 
