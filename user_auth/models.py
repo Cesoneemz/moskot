@@ -62,6 +62,13 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
+    ROLE_CHOICES = [
+        ('user', 'Пользователь'),
+        ('mentor', 'Наставник'),
+        ('tutor', 'Куратор')
+    ]
+    role = models.CharField(max_length=128, choices=ROLE_CHOICES, default='user', verbose_name='Роль пользователя')
+
     objects = UserAccountManager()
 
     USERNAME_FIELD = 'email'
