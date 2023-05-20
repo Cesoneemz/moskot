@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.template.defaultfilters import slugify
+from rest_framework.reverse import reverse
+
+from .utils import get_profile_picture_path
 
 
 class UserAccountManager(BaseUserManager):
@@ -19,6 +23,8 @@ class UserAccountManager(BaseUserManager):
 class UserAccount(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=128, unique=True, verbose_name='Почта')
     name = models.CharField(max_length=128, verbose_name='ФИО')
+
+    slug = models.SlugField(unique=True, verbose_name='URL')
 
     phone = models.CharField(max_length=128, verbose_name='Номер телефона', blank=True, null=True)
     birth_date = models.DateField(verbose_name='Дата рождения', blank=True, null=True)
@@ -49,6 +55,8 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     citizenship = models.CharField(max_length=128, choices=CITIZENSHIP_CHOICES, default='rus',
                                    verbose_name='Гражданство')
 
+    cv = models.FileField(upload_to=get_profile_picture_path, verbose_name='Резюме', blank=True, null=True)
+
     about_user = models.TextField(max_length=1024, verbose_name='О пользователе', blank=True, null=True)
 
     is_active = models.BooleanField(default=True)
@@ -61,6 +69,16 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
 
     def get_full_name(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('profile', kwargs={'slug': self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            email_slug = self.email[0:self.email.index('@')]
+            self.slug = slugify(email_slug)
+
+        super(UserAccount, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.email
