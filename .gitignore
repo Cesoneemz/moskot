@@ -1,6 +1,7 @@
 .idea/
 env/
 migrations/
+media/
 
 .env
 .venv
