@@ -1,0 +1,6 @@
+# Django
+TOKEN="your_django_token"
+
+# Email service
+EMAIL_HOST_USER=your_email_host
+EMAIL_HOST_PASSWORD=your_password

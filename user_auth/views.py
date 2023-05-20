@@ -1,10 +1,11 @@
-from rest_framework.generics import UpdateAPIView, RetrieveAPIView, get_object_or_404
+from rest_framework.generics import get_object_or_404
 from .models import UserAccount
 from .serializers import CustomUserUpdateSerializer
 from rest_framework.viewsets import ModelViewSet
 
 
 # Create your views here.
+
 
 class UserAccountViewSet(ModelViewSet):
     queryset = UserAccount.objects.all()
