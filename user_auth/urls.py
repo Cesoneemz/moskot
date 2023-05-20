@@ -1,7 +1,7 @@
 from django.urls import path, include
-from .views import UserAccountUpdateAPIView, UserAccountRetrieveAPIView
+from .views import UserAccountViewSet
 
 urlpatterns = [
-    path('profile/<slug:slug>/', UserAccountRetrieveAPIView.as_view(), name='profile'),
-    path('profile/<slug:slug>/edit/', UserAccountUpdateAPIView.as_view(), name='profile_edit')
+    path('profile/<slug:slug>/', UserAccountViewSet.as_view({'get': 'retrieve'}), name='profile'),
+    path('profile/<slug:slug>/edit/', UserAccountViewSet.as_view({'put': 'update'}), name='profile_edit')
 ]
