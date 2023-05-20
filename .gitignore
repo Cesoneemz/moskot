@@ -4,5 +4,6 @@ migrations/
 media/
 
 .env
+.venv
 *.sqlite3
 *.pyc
