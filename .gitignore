@@ -3,5 +3,6 @@ env/
 migrations/
 
 .env
+.venv
 *.sqlite3
 *.pyc
