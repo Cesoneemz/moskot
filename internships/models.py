@@ -14,6 +14,11 @@ class InternShip(models.Model):
         related_name="internships",
         verbose_name="Куратор",
     )
+    candidate = models.ManyToManyField(
+        UserAccount,
+        related_name="internship_candidates",
+        verbose_name="Кандидаты на стажировку",
+    )
 
     def __str__(self):
         return self.chalange
