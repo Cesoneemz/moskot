@@ -1,5 +1,5 @@
 from djoser.serializers import UserCreateSerializer
-from rest_framework.serializers import ModelSerializer, SlugRelatedField
+from rest_framework.serializers import ModelSerializer
 
 from django.contrib.auth import get_user_model
 
@@ -46,4 +46,4 @@ class CustomUserUpdateSerializer(ModelSerializer):
             "work_experience",
         )
         lookup_field = "slug"
-        extra_kwargs = {"url": {"lookup_field": "slug"}}
+        extra_kwargs = {"url": {"lookup_field": "slug"}

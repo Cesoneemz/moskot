@@ -2,7 +2,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
+
 from .views import UserAccountViewSet
+
 
 urlpatterns = [
     path('profile/<slug:slug>/', UserAccountViewSet.as_view({'get': 'retrieve'}), name='profile'),
