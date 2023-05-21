@@ -46,4 +46,4 @@ class CustomUserUpdateSerializer(ModelSerializer):
             "work_experience",
         )
         lookup_field = "slug"
-        extra_kwargs = {"url": {"lookup_field": "slug"}
+        extra_kwargs = {"url": {"lookup_field": "slug"}}
