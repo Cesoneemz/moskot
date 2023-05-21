@@ -9,6 +9,7 @@ class InternShipSerializer(serializers.ModelSerializer):
     class Meta:
         model = InternShip
         fields = (
+            "id",
             "chalange",
             "name_direction",
             "tutor",
