@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser,
@@ -109,6 +111,14 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
 
     def get_absolute_url(self):
         return reverse("profile", kwargs={"slug": self.slug})
+
+    def calculate_age(self):
+        today = date.today()
+        age = today.year - self.birth_date.year
+        if today.month < self.birth_date.month or (
+                today.month == self.birth_date.month and today.day < self.birth_date.day):
+            age -= 1
+        return age
 
     def save(self, *args, **kwargs):
         if not self.id:
