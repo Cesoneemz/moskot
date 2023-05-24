@@ -45,9 +45,10 @@ INSTALLED_APPS = [
     "djoser",
     "django_extensions",
     "django_filters",
+    "drf_spectacular",
     "user_auth",
     "internships",
-    "drf_spectacular",
+    "events",
 ]
 
 MIDDLEWARE = [

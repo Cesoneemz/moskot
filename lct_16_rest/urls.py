@@ -4,10 +4,12 @@ from rest_framework.routers import SimpleRouter
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 from internships.views import InternShipViewSet
+from events.views import EventViewSet
 
 
 router = SimpleRouter()
 router.register("internships", InternShipViewSet)
+router.register("events", EventViewSet)
 
 
 urlpatterns = [
